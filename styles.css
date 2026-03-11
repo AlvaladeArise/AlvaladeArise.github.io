@@ -174,40 +174,243 @@ body {
 }
 
 .hero-bottom-logo img {
-    max-width: 35rem;
+    max-width: 30rem;
     height: auto;
     filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.5));
 }
 
 /* Confirmações Section */
 .confirmacoes {
-    background-color: var(--darker-bg);
-    padding: 80px 0;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(0, 255, 0, 0.12), transparent 48%),
+        radial-gradient(circle at 80% 30%, rgba(76, 175, 80, 0.08), transparent 45%),
+        linear-gradient(rgba(0, 0, 0, 0.68), rgba(0, 0, 0, 0.68)),
+        url('assets/images/2026/background_2026.png') center center / cover no-repeat;
+    padding: 6px 0;
     min-height: 100vh;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
 }
 
-.confirmacoes-content {
+.confirmacoes .container {
+    width: 100%;
+}
+
+.confirmacoes-title {
+    font-size: 1.4rem;
+    color: #d9ffd9;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 6px;
+    font-weight: 900;
+    line-height: 1;
+    text-shadow:
+        0 0 10px rgba(0, 255, 0, 0.28),
+        0 0 24px rgba(0, 255, 0, 0.12);
+}
+
+@keyframes ticket-pulse {
+    0%, 100% { box-shadow: 0 0 10px rgba(0, 255, 0, 0.35), 0 0 28px rgba(0, 255, 0, 0.15); }
+    50%       { box-shadow: 0 0 22px rgba(0, 255, 0, 0.65), 0 0 50px rgba(0, 255, 0, 0.25); }
+}
+
+.ticket-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(135deg, rgba(0, 60, 0, 0.85) 0%, rgba(0, 30, 0, 0.95) 100%);
+    border: 1px solid rgba(0, 255, 0, 0.7);
+    border-radius: 8px;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    text-decoration: none;
+    animation: ticket-pulse 2.4s ease-in-out infinite;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.ticket-banner:hover {
+    background: linear-gradient(135deg, rgba(0, 100, 0, 0.9) 0%, rgba(0, 60, 0, 1) 100%);
+    transform: scaleX(1.005);
+}
+
+.ticket-banner-label {
+    color: #ffffff;
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 700;
+}
+
+.ticket-banner-label::before {
+    content: "🎟  ";
+}
+
+.ticket-banner-cta {
+    color: var(--primary-green);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 900;
+    text-shadow: 0 0 14px rgba(0, 255, 0, 0.7);
+}
+
+.confirmacoes-days {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 60px;
+    gap: 10px;
+}
+
+.day-column {
+    position: relative;
+    background: rgba(0, 0, 0, 0.38);
+    border: 1px solid rgba(0, 255, 0, 0.2);
+    border-radius: 14px;
+    padding: 8px 8px 6px;
+    backdrop-filter: blur(2px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+}
+
+.day-column-header {
+    display: flex;
     align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
 }
 
-.confirmacoes-text h2 {
-    font-size: 2.5rem;
-    color: var(--primary-green);
-    margin-bottom: 30px;
+.day-column-header::before,
+.day-column-header::after {
+    content: "";
+    height: 1px;
+    background: rgba(0, 255, 0, 0.45);
+    flex: 1;
+}
+
+.day-column-header span {
+    color: #efffef;
+    font-size: 0.94rem;
     text-transform: uppercase;
+    letter-spacing: 3px;
+    white-space: nowrap;
+    font-weight: 900;
+    text-shadow: 0 0 12px rgba(0, 255, 0, 0.2);
 }
 
-.confirmacoes-text p {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    margin-bottom: 20px;
-    color: var(--text-gray);
+.band-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
 }
+
+.band-row {
+    display: grid;
+    gap: 3px;
+}
+
+.cols-1 {
+    grid-template-columns: 1fr;
+}
+
+.cols-1 .band-logo-placeholder {
+    width: 88%;
+    margin: 0 auto;
+}
+
+.cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.band-logo-placeholder {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1px 0;
+    text-align: center;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #f2f2f2;
+    transition: transform 0.3s ease;
+}
+
+.band-logo-placeholder img {
+    width: 78%;
+    height: 72%;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    display: block;
+    filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.45));
+}
+
+.cols-1 .band-logo-placeholder img {
+    width: 76%;
+    height: 76%;
+}
+
+.cols-2 .band-logo-placeholder img {
+    width: 78%;
+    height: 70%;
+}
+
+.cols-3 .band-logo-placeholder img {
+    width: 86%;
+    height: 72%;
+}
+
+.band-logo-placeholder:hover {
+    transform: translateY(-2px);
+}
+
+.sabado .cols-2 .band-logo-placeholder img {
+    width: 84%;
+    height: 74%;
+}
+
+.sabado .cols-3 .band-logo-placeholder img {
+    width: 94%;
+    height: 78%;
+}
+
+.sabado .row-compact .band-logo-placeholder img {
+    width: 88%;
+    height: 76%;
+}
+
+.row-feature .band-logo-placeholder {
+    min-height: 52px;
+}
+
+.row-strong .band-logo-placeholder {
+    min-height: 34px;
+}
+
+.row-medium .band-logo-placeholder {
+    min-height: 24px;
+}
+
+.row-compact .band-logo-placeholder {
+    min-height: 24px;
+}
+
+@media (min-width: 1025px) {
+    .confirmacoes {
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .confirmacoes .container {
+        width: 100%;
+        max-width: 1320px;
+        margin: 0 auto;
+    }
+}
+
 
 .btn-primary {
     background-color: var(--secondary-green);
@@ -226,10 +429,6 @@ body {
 .btn-primary:hover {
     background-color: var(--primary-green);
     transform: scale(1.05);
-}
-
-.confirmacoes-image {
-    width: 100%;
 }
 
 .image-placeholder {
@@ -433,7 +632,7 @@ body {
         padding: 0 30px;
     }
 
-    .confirmacoes-content,
+    .confirmacoes-days,
     .year-images,
     .contactos-content {
         grid-template-columns: 1fr;
@@ -475,6 +674,11 @@ body {
         min-height: auto;
     }
 
+    .confirmacoes {
+        display: block;
+        padding: 60px 0;
+    }
+
     .logo {
         max-width: 300px;
     }
@@ -483,13 +687,20 @@ body {
         font-size: 1.1rem;
     }
 
-    .confirmacoes-text h2,
+    .confirmacoes-title {
+        font-size: 1.05rem;
+    }
+
     .about h2,
     .year-section h2,
     .merch h2,
     .contactos h2,
     .parceiros h2 {
         font-size: 1.8rem;
+    }
+
+    .day-column {
+        padding: 22px 16px 18px;
     }
 
     .merch-grid,
@@ -507,7 +718,10 @@ body {
         padding: 0 15px;
     }
 
-    .confirmacoes-text h2,
+    .confirmacoes-title {
+        font-size: 0.86rem;
+    }
+
     .about h2,
     .year-section h2,
     .merch h2,
@@ -516,12 +730,25 @@ body {
         font-size: 1.5rem;
     }
 
+    .day-column-header span {
+        font-size: 0.72rem;
+        letter-spacing: 2px;
+    }
+
+    .cols-3 {
+        grid-template-columns: 1fr;
+    }
+
+    .cols-2,
+    .cols-3 {
+        grid-template-columns: 1fr;
+    }
+
     .merch-grid,
     .partners-grid {
         grid-template-columns: 1fr;
     }
 
-    .confirmacoes-text p,
     .about p,
     .year-section p {
         font-size: 1rem;
