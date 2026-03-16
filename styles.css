@@ -26,9 +26,9 @@ body {
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
-    padding: 0 40px;
+    padding: 0 24px;
 }
 
 /* Navigation Dots */
@@ -101,6 +101,22 @@ body {
 
 .nav-social:hover img {
     filter: brightness(0);
+}
+
+.nav-social-text {
+    color: #ffffff;
+    font-weight: 800;
+    font-size: 0.72rem;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+}
+
+.nav-social-text span {
+    line-height: 1;
+}
+
+.nav-social-text:hover {
+    color: #0b0b0b;
 }
 
 /* Hero Section */
@@ -309,6 +325,22 @@ body {
     gap: 3px;
 }
 
+.confirmacoes-camping-banner {
+    margin-top: 10px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2.8px;
+    font-size: 1rem;
+    font-weight: 900;
+    color: #e8ffe8;
+    border: 2px solid rgba(0, 255, 0, 0.85);
+    border-radius: 8px;
+    padding: 10px 14px;
+    background: linear-gradient(90deg, rgba(0, 55, 0, 0.9) 0%, rgba(0, 95, 0, 0.58) 50%, rgba(0, 55, 0, 0.9) 100%);
+    box-shadow: 0 0 18px rgba(0, 255, 0, 0.45), inset 0 0 18px rgba(0, 255, 0, 0.2);
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.55);
+}
+
 .band-row {
     display: grid;
     gap: 3px;
@@ -497,7 +529,7 @@ body {
     margin-bottom: 18px;
     border-radius: 8px;
     border: 1px solid rgba(255, 255, 255, 0.16);
-    object-fit: contain;
+    object-fit: cover;
     object-position: center;
     background-color: rgba(0, 0, 0, 0.35);
     box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.3);
@@ -633,12 +665,30 @@ body {
     max-width: 90%;
 }
 
+.ticket-strip-facts {
+    display: none;
+}
+
 .ticket-lineup {
     margin-top: 12px;
     padding: 0;
     border: none;
     border-radius: 0;
     background: transparent;
+}
+
+.ticket-camping-note {
+    display: inline-block;
+    margin: 8px 0 4px;
+    padding: 3px 9px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.66rem;
+    font-weight: 800;
+    color: var(--primary-green);
+    border: 1px solid rgba(0, 255, 0, 0.35);
+    border-radius: 999px;
+    background: rgba(0, 255, 0, 0.06);
 }
 
 .ticket-lineup-row {
@@ -703,21 +753,19 @@ body {
     grid-area: media;
     padding: 0;
     display: flex;
-    align-items: stretch;
-    justify-content: stretch;
+    align-items: center;
+    justify-content: center;
     width: 180px;
     min-width: 180px;
-    max-width: 150;
+    background-color: rgba(0, 0, 0, 0.45);
+    border-right: 1px solid rgba(0, 255, 0, 0.25);
 }
 
 .ticket-strip-media img {
     display: block;
     width: 100%;
     height: auto;
-    object-fit: cover;
-    object-position: center;
-    background-color: rgba(0, 0, 0, 0.45);
-    border-right: 1px solid rgba(0, 255, 0, 0.25);
+    object-fit: contain;
 }
 
 .ticket-strip-buy {
@@ -827,7 +875,7 @@ body {
         radial-gradient(circle at 75% 60%, rgba(0, 255, 0, 0.10), transparent 48%),
         radial-gradient(circle at 15% 30%, rgba(76, 175, 80, 0.07), transparent 44%),
         linear-gradient(180deg, #121212 0%, #0b0b0b 100%);
-    padding: 80px 0;
+    padding: 92px 0;
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -835,7 +883,7 @@ body {
 
 .contactos-layout {
     display: flex;
-    gap: 40px;
+    gap: 56px;
     align-items: center;
 }
 
@@ -844,7 +892,7 @@ body {
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    padding-right: 36px;
+    padding-right: 52px;
     position: relative;
 }
 
@@ -861,7 +909,7 @@ body {
 }
 
 .contactos h2 {
-    font-size: clamp(2rem, 4vw, 3rem);
+    font-size: clamp(2.8rem, 5.6vw, 4.2rem);
     text-transform: uppercase;
     letter-spacing: 6px;
     color: #ffffff;
@@ -872,26 +920,41 @@ body {
 
 .contactos-content {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
+    grid-template-columns: 2fr 1fr;
+    gap: 50px;
     align-items: center;
     flex: 1;
 }
 
 .contactos-info {
-    font-size: 1.1rem;
-    line-height: 1.8;
+    font-size: 1.2rem;
+    line-height: 1.7;
     color: var(--text-gray);
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px 22px;
+    align-items: start;
+}
+
+.contactos-lead {
+    grid-column: 1 / -1;
+    margin: 0 0 6px;
+    color: #d9d9d9;
+    font-size: 1.22rem;
+    line-height: 1.55;
 }
 
 .contactos-info p {
-    margin-bottom: 28px;
+    margin: 0;
+    min-width: 0;
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
 .contactos-info strong {
     display: block;
     color: var(--primary-green);
-    font-size: 0.72rem;
+    font-size: 0.92rem;
     letter-spacing: 3px;
     text-transform: uppercase;
     margin-bottom: 4px;
@@ -907,13 +970,40 @@ body {
     color: #ffffff;
 }
 
+.contactos-quick-actions {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.contactos-quick-actions a {
+    text-decoration: none;
+    color: #d8d8d8;
+    font-size: 0.9rem;
+    letter-spacing: 1.3px;
+    text-transform: uppercase;
+    padding: 10px 14px;
+    border: 1px solid rgba(0, 255, 0, 0.3);
+    border-radius: 999px;
+    background: rgba(0, 255, 0, 0.05);
+    transition: all 0.2s ease;
+}
+
+.contactos-quick-actions a:hover {
+    color: #ffffff;
+    border-color: rgba(0, 255, 0, 0.65);
+    background: rgba(0, 255, 0, 0.12);
+}
+
 .map-embed {
     width: 100%;
-    border-radius: 12px;
+    border-radius: 16px;
     overflow: hidden;
     border: 1px solid rgba(0, 255, 0, 0.3);
     box-shadow: 0 0 30px rgba(0, 255, 0, 0.12), 0 16px 40px rgba(0, 0, 0, 0.6);
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 5 / 4;
 }
 
 .map-embed iframe {
@@ -1036,6 +1126,10 @@ body {
         gap: 28px;
     }
 
+    .contactos-info {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
     .contactos-title-col {
         padding-right: 0;
     }
@@ -1076,12 +1170,23 @@ body {
         display: none;
     }
 
+    .ticket-camping-note {
+        display: none !important;
+    }
+
     .container {
         padding: 0 20px;
     }
 
     .hero {
-        min-height: 80vh;
+        min-height: 100vh;
+        min-height: 100svh;
+    }
+
+    @supports (height: 100dvh) {
+        .hero {
+            min-height: 100dvh;
+        }
     }
 
     .confirmacoes,
@@ -1129,71 +1234,112 @@ body {
     }
 
     .ticket-strip {
-        grid-template-columns: 1fr;
-        grid-template-areas:
-            "media"
-            "main"
-            "buy";
+        grid-template-columns: 110px 1fr 72px;
+        grid-template-areas: "media main buy";
+        min-height: 110px;
     }
 
     .ticket-strip::after {
-        display: none;
+        right: 72px;
     }
 
     .ticket-strip-main {
-        padding: 22px 18px 12px;
+        padding: 10px 10px 10px;
+        overflow: hidden;
     }
 
     .ticket-strip-main h3 {
-        font-size: 1.9rem;
+        font-size: 0.78rem;
+        margin-bottom: 2px;
     }
 
-    .ticket-strip-main p {
+    .ticket-strip-main > p {
+        display: block;
+        font-size: 0.56rem;
+        line-height: 1.25;
+        margin-bottom: 4px;
         max-width: 100%;
     }
 
+    .ticket-camping-note {
+        display: none !important;
+    }
+
+    .confirmacoes-camping-banner {
+        margin-top: 8px;
+        font-size: 0.78rem;
+        letter-spacing: 1.6px;
+        padding: 8px 10px;
+    }
+
+    .ticket-strip-tag {
+        font-size: 0.55rem;
+        padding: 3px 7px;
+        margin-bottom: 6px;
+    }
+
     .ticket-lineup {
-        padding: 10px;
+        display: none;
     }
 
-    .ticket-lineup-row-head {
-        font-size: 1.45rem;
-        line-height: 1;
+    .ticket-strip-facts {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 3px;
+        list-style: none;
+        margin: 4px 0 0;
+        padding: 0;
     }
 
-    .ticket-lineup-row {
-        font-size: 0.9rem;
+    .ticket-strip-facts li {
+        font-size: 0.56rem;
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+        line-height: 1.2;
+        color: #e4e4e4;
+        position: relative;
+        padding-left: 10px;
     }
 
-    .ticket-lineup-row-small {
-        font-size: 0.74rem;
+    .ticket-strip-facts li::before {
+        content: "";
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background: var(--primary-green);
+        position: absolute;
+        left: 0;
+        top: 0.42em;
+        box-shadow: 0 0 5px rgba(0, 255, 0, 0.45);
     }
 
     .ticket-strip-band-list {
-        columns: 1;
-        column-gap: 0;
+        columns: 2;
+        column-gap: 10px;
+        margin-top: 6px;
+    }
+
+    .ticket-strip-band-list li {
+        font-size: 0.68rem;
+        margin-bottom: 2px;
     }
 
     .ticket-strip-media {
-        padding: 0;
-        width: 100%;
-        min-width: 0;
-        max-width: none;
+        width: 110px;
+        min-width: 110px;
+        max-width: 110px;
     }
 
     .ticket-strip-media img {
+        width: 100%;
         height: auto;
-        border-right: none;
-        border-bottom: 1px solid rgba(0, 255, 0, 0.25);
+        object-fit: contain;
     }
 
     .ticket-strip-buy {
-        writing-mode: horizontal-tb;
-        transform: none;
-        font-size: 1rem;
+        font-size: 0.65rem;
         letter-spacing: 1px;
-        padding: 16px;
-        border-top: 1px dashed rgba(0, 255, 0, 0.5);
+        padding: 8px 10px;
     }
 
     .merch-grid {
@@ -1201,6 +1347,10 @@ body {
     }
 
     .year-images {
+        grid-template-columns: 1fr;
+    }
+
+    .contactos-info {
         grid-template-columns: 1fr;
     }
 }
@@ -1252,5 +1402,23 @@ body {
     .ticket-card p,
     .ticket-strip-main p {
         font-size: 1rem;
+    }
+
+    .contactos h2 {
+        font-size: 2.05rem;
+    }
+
+    .contactos-lead {
+        font-size: 1.08rem;
+    }
+
+    .contactos-info {
+        font-size: 1.08rem;
+        gap: 14px;
+    }
+
+    .contactos-quick-actions a {
+        font-size: 0.82rem;
+        padding: 8px 11px;
     }
 }
