@@ -119,6 +119,41 @@ body {
     color: #0b0b0b;
 }
 
+.language-switcher {
+    position: fixed;
+    top: 22px;
+    right: 24px;
+    z-index: 1200;
+    display: inline-flex;
+    border: 1px solid rgba(0, 255, 0, 0.45);
+    border-radius: 999px;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.72);
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.18);
+}
+
+.lang-btn {
+    border: 0;
+    background: transparent;
+    color: #e2e2e2;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.lang-btn:hover {
+    color: #ffffff;
+    background: rgba(0, 255, 0, 0.12);
+}
+
+.lang-btn.active {
+    color: #0d0d0d;
+    background: var(--primary-green);
+}
+
 /* Hero Section */
 .hero {
     min-height: 100vh;
@@ -222,6 +257,8 @@ body {
 
 .confirmacoes .container {
     width: 100%;
+    max-width: 1080px;
+    margin: auto;
 }
 
 .confirmacoes-title {
@@ -282,7 +319,7 @@ body {
 .confirmacoes-days {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 10px;
+    gap: 8px;
 }
 
 .day-column {
@@ -290,7 +327,7 @@ body {
     background: rgba(0, 0, 0, 0.38);
     border: 1px solid rgba(0, 255, 0, 0.2);
     border-radius: 14px;
-    padding: 8px 8px 6px;
+    padding: 6px 6px 5px;
     backdrop-filter: blur(2px);
     box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
 }
@@ -387,6 +424,21 @@ body {
     filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.45));
 }
 
+.band-logo-placeholder img.headliner {
+    max-height: 256px !important;
+    height: auto;
+}
+
+.band-logo-placeholder img.mid-tier {
+    max-height: 128px !important;
+    height: auto;
+}
+
+.band-logo-placeholder img.suport-tier {
+    max-height: 128px !important;
+    height: auto;
+}
+
 .cols-1 .band-logo-placeholder img {
     width: 76%;
     height: 76%;
@@ -445,8 +497,8 @@ body {
 
     .confirmacoes .container {
         width: 100%;
-        max-width: 1320px;
-        margin: 0 auto;
+        max-width: 1080px;
+        margin: auto;
     }
 }
 
@@ -1176,6 +1228,16 @@ body {
 
     .container {
         padding: 0 20px;
+    }
+
+    .language-switcher {
+        top: 12px;
+        right: 12px;
+    }
+
+    .lang-btn {
+        font-size: 0.65rem;
+        padding: 7px 10px;
     }
 
     .hero {

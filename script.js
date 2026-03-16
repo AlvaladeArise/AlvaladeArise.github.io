@@ -1,4 +1,4 @@
-// Hero Carousel - Dynamic Image Loading
+﻿// Hero Carousel - Dynamic Image Loading
 const HERO_IMAGE_COUNT = 16; // Update this number when adding/removing images
 const HERO_IMAGE_PATH = 'assets/images/hero/';
 const HERO_IMAGE_PREFIX = 'banner_';
@@ -6,6 +6,143 @@ const HERO_IMAGE_EXT = '.jpg';
 
 let currentSlide = 0;
 let slides = [];
+
+const I18N = {
+    pt: {
+        pageTitle: 'Alvalade Arise Fest',
+        buyTicketsAria: 'Comprar bilhetes',
+        ticketBannerLabel: 'Bilhetes disponíveis',
+        ticketBannerCta: 'Comprar Agora',
+        fridayHeader: 'Sexta 22 de Maio',
+        saturdayHeader: 'Sábado 23 de Maio',
+        freeCamping: 'Campismo grátis',
+        freeCampingFull: 'Campismo gratuito',
+        ticketsHeading: 'Bilhetes já disponíveis',
+        fullPassTag: 'Passe Completo',
+        fullPassTitle: 'Passe Geral 22 e 23 de maio',
+        fullPassDesc: 'Acesso geral válido para os dois dias do festival, com todas as bandas de 22 e 23.',
+        fullPassFactsAria: 'Informações do passe completo',
+        fullPassFactBands: '15 bandas em 2 dias',
+        day1Tag: 'Dia 1',
+        day1Title: 'Sexta 22 de maio',
+        day1Desc: 'Bilhete diário para sexta-feira com acesso completo ao recinto.',
+        day1FactsAria: 'Informações de sexta 22',
+        day1FactBands: '5 bandas na sexta',
+        day2Tag: 'Dia 2',
+        day2Title: 'Sábado 23 de maio',
+        day2Desc: 'Bilhete diário para sábado com acesso completo ao recinto.',
+        day2FactsAria: 'Informações de sábado 23',
+        day2FactBands: '10 bandas no sábado',
+        buy: 'Comprar',
+        contactsTitle: 'Contactos',
+        contactsLead: 'Fala connosco para bilhetes, informações e novidades do festival.',
+        website: 'Website',
+        address: 'Morada',
+        email: 'Email',
+        socialNetworks: 'Redes sociais',
+        quickActionsAria: 'Ações rápidas de contacto',
+        map: 'Mapa',
+        organization: 'Organização',
+        support: 'Apoio',
+        partners: 'Parceiros',
+        footerRights: '© 2026 Alvalade Arise · Todos os direitos reservados'
+    },
+    en: {
+        pageTitle: 'Alvalade Arise - Music Festival',
+        buyTicketsAria: 'Buy tickets',
+        ticketBannerLabel: 'Tickets available',
+        ticketBannerCta: 'Buy Now',
+        fridayHeader: 'Friday 22 May',
+        saturdayHeader: 'Saturday 23 May',
+        freeCamping: 'Free camping',
+        freeCampingFull: 'Free camping',
+        ticketsHeading: 'Tickets now available',
+        fullPassTag: 'Full Pass',
+        fullPassTitle: 'General Pass 22 and 23 May',
+        fullPassDesc: 'General access for both festival days, with all bands on the 22nd and 23rd.',
+        fullPassFactsAria: 'Full pass info',
+        fullPassFactBands: '15 bands in 2 days',
+        day1Tag: 'Day 1',
+        day1Title: 'Friday 22 May',
+        day1Desc: 'Day ticket for Friday with full access to the venue.',
+        day1FactsAria: 'Friday 22 info',
+        day1FactBands: '5 bands on Friday',
+        day2Tag: 'Day 2',
+        day2Title: 'Saturday 23 May',
+        day2Desc: 'Day ticket for Saturday with full access to the venue.',
+        day2FactsAria: 'Saturday 23 info',
+        day2FactBands: '10 bands on Saturday',
+        buy: 'Buy',
+        contactsTitle: 'Contacts',
+        contactsLead: 'Talk to us for tickets, updates, and festival news.',
+        website: 'Website',
+        address: 'Address',
+        email: 'Email',
+        socialNetworks: 'Social networks',
+        quickActionsAria: 'Quick contact actions',
+        map: 'Map',
+        organization: 'Organization',
+        support: 'Support',
+        partners: 'Partners',
+        footerRights: 'Â© 2026 Alvalade Arise Â· All rights reserved'
+    }
+};
+
+function applyLanguage(language) {
+    const lang = language === 'en' ? 'en' : 'pt';
+    const dictionary = I18N[lang];
+
+    document.documentElement.lang = lang === 'en' ? 'en' : 'pt-BR';
+    document.title = dictionary.pageTitle;
+
+    document.querySelectorAll('[data-i18n]').forEach((el) => {
+        const key = el.getAttribute('data-i18n');
+        if (dictionary[key]) {
+            el.textContent = dictionary[key];
+        }
+    });
+
+    document.querySelectorAll('[data-i18n-aria-label]').forEach((el) => {
+        const key = el.getAttribute('data-i18n-aria-label');
+        if (dictionary[key]) {
+            el.setAttribute('aria-label', dictionary[key]);
+        }
+    });
+
+    document.querySelectorAll('.lang-btn').forEach((btn) => {
+        btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+    });
+
+    localStorage.setItem('siteLanguage', lang);
+    updateLanguageInUrl(lang);
+}
+
+function getLanguageFromUrl() {
+    const params = new URLSearchParams(window.location.search);
+    const urlLang = (params.get('lang') || '').toLowerCase();
+    return urlLang === 'en' || urlLang === 'pt' ? urlLang : null;
+}
+
+function updateLanguageInUrl(lang) {
+    const url = new URL(window.location.href);
+    url.searchParams.set('lang', lang);
+    window.history.replaceState({}, '', url.toString());
+}
+
+function initializeLanguageSwitcher() {
+    const urlLanguage = getLanguageFromUrl();
+    const savedLanguage = localStorage.getItem('siteLanguage');
+    const browserLanguage = (navigator.language || '').toLowerCase();
+    const initialLanguage = urlLanguage || savedLanguage || (browserLanguage.startsWith('en') ? 'en' : 'pt');
+
+    document.querySelectorAll('.lang-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+            applyLanguage(btn.getAttribute('data-lang'));
+        });
+    });
+
+    applyLanguage(initialLanguage);
+}
 
 // Dynamically create carousel slides
 function initializeCarousel() {
@@ -84,6 +221,7 @@ window.addEventListener('scroll', updateActiveDot);
 
 // Initial call on page load
 document.addEventListener('DOMContentLoaded', updateActiveDot);
+document.addEventListener('DOMContentLoaded', initializeLanguageSwitcher);
 
 // Add click animation to buttons
 document.querySelectorAll('.btn-primary').forEach(btn => {
@@ -175,10 +313,4 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// Social links (placeholder)
-document.querySelectorAll('.nav-social').forEach(link => {
-    link.addEventListener('click', (e) => {
-        e.preventDefault();
-        alert('Social link would open in a new window');
-    });
-});
+
